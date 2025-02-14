@@ -20,6 +20,8 @@ if (!fs.existsSync(path.join(braveCoreDir, '.git'))) {
   util.runGit(braveCoreDir, ['clone', util.getNPMConfig(['projects', 'brave-core', 'repository', 'url']), '.'])
   util.runGit(braveCoreDir, ['checkout', braveCoreRef])
 }
+const braveCoreSha = util.runGit(braveCoreDir, ['rev-parse', 'HEAD'])
+Log.progress(`brave-core repo at ${braveCoreDir} is at commit ID ${braveCoreSha}`)
 
 let npmCommand = 'npm'
 if (process.platform === 'win32') {
